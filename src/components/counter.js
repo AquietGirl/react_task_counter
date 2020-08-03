@@ -4,8 +4,7 @@ class Counter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0,
-      originSize: this.props.changeSize,
+      value: 0
     };
   }
 
@@ -19,14 +18,8 @@ class Counter extends Component {
     );
   }
 
-  static getDerivedStateFromProps(props, state) {
-      if (props.changeSize !== state.originSize) {
-         return {
-              value: 0,
-              originSize: props.changeSize,
-          }
-      }
-      return null;
+  componentWillUnmount() {
+    this.props.clearLastValue(this.state.value)
   }
 
   subCount = () => {

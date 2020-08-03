@@ -15,11 +15,16 @@ class CounterGroup extends Component {
     const newSize = event.target.value ? parseInt(event.target.value) : 0;
     if (this.state.size !== newSize) {
       this.setState({
-        size: newSize,
-        totalValue: 0,
+        size: newSize
       });
     }
   };
+
+  clearLastValue = (value) => {
+    this.setState((preState) => ({
+      totalValue: preState.totalValue - value
+    }))
+  }
 
   handleIncrease = () => {
     this.setState((preState) => ({
@@ -52,7 +57,7 @@ class CounterGroup extends Component {
             key={key}
             onIncrease={this.handleIncrease}
             onDescrease={this.handleDescrease}
-            changeSize={this.state.size}
+            clearLastValue = {this.clearLastValue}
           />
         ))}
       </div>
