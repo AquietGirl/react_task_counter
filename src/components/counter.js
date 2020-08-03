@@ -4,7 +4,7 @@ class Counter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0
+      value: 0,
     };
   }
 
@@ -19,11 +19,13 @@ class Counter extends Component {
   }
 
   componentWillUnmount() {
-    this.props.clearLastValue(this.state.value)
+    this.props.clearLastValue(this.state.value);
   }
 
   subCount = () => {
-    this.setState((preState) => ({ value: preState.value - 1 }));
+    this.setState((preState) => ({
+      value: preState.value - 1,
+    }));
     this.props.onDescrease();
   };
 

@@ -1,13 +1,13 @@
 import React from "react";
 import { Component } from "react";
+import { incrementCount, decrementCount, diffCount } from "../actions/counterAction";
 import Counter from "./counter";
 
 class CounterGroup extends Component {
-  constructor(porps) {
-    super(porps);
+  constructor(props) {
+    super(props);
     this.state = {
       size: 0,
-      totalValue: 0,
     };
   }
 
@@ -21,22 +21,8 @@ class CounterGroup extends Component {
   };
 
   clearLastValue = (value) => {
-    this.setState((preState) => ({
-      totalValue: preState.totalValue - value
-    }))
+    this.props.store.dispatch(diffCount(value))
   }
-
-  handleIncrease = () => {
-    this.setState((preState) => ({
-      totalValue: preState.totalValue + 1,
-    }));
-  };
-
-  handleDescrease = () => {
-    this.setState((preState) => ({
-      totalValue: preState.totalValue - 1,
-    }));
-  };
 
   render() {
     const initArray = [...Array(this.state.size).keys()];
@@ -50,13 +36,13 @@ class CounterGroup extends Component {
           </label>
         </p>
         <p>
-          <label>Total Value: {this.state.totalValue}</label>
+          <label>Total Value: {this.props.store.getState()}</label>
         </p>
         {initArray.map((key) => (
           <Counter
             key={key}
-            onIncrease={this.handleIncrease}
-            onDescrease={this.handleDescrease}
+            onIncrease={() => this.props.store.dispatch(incrementCount())}
+            onDescrease={() => this.props.store.dispatch(decrementCount())}
             clearLastValue = {this.clearLastValue}
           />
         ))}
