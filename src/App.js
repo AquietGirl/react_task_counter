@@ -1,10 +1,10 @@
 import React from 'react';
 import CounterGroup from './components/counterGroup'
 
-function App(props) {
+function App() {
   return (
     <div >
-      <CounterGroup store = {props.store}/>
+      <CounterGroup />
     </div>
   );
 }
