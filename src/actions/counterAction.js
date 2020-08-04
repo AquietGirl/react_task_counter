@@ -1,18 +1,14 @@
-export function incrementCount() {
-    return {
-        type: 'INCREMENT'
-    }
-}
+import { INCREMENT, DECREMENT} from './actionType'
+import {createAction} from '@reduxjs/toolkit'
 
-export function decrementCount() {
-    return {
-        type: 'DECREMENT'
-    }
-}
+export const addNumber = createAction(INCREMENT, () => ({
+    payload: 1
+}))
 
-export function diffCount(lastValue) {
-    return {
-        type: 'DIFF',
-        payload: lastValue
-    }
-}
+export const subNumber = createAction(DECREMENT, () => ({
+    payload: 1
+}))
+
+export const diffNumber = createAction(DECREMENT, (diffNumber) => ({
+    payload: diffNumber
+}))
